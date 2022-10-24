@@ -13,7 +13,7 @@
 
 ## Project Description
 
-We are Peekaboo, a software that focuses on developing applications for users, typically students and learners, to assess their ability by doing tests.
+We are Peekaboo, a software that focuses on developing applications for users, typically students and learners, to assess their ability by doing tests. Please see the source code in the dev branch!
 
 Background: Peekaboo resembles other assessment websites such as ieltsonlinetest.com, codeforce.com, etc. However, we improve the styles and usability of the tests so that they are personalized and customized for admins and users.
 
