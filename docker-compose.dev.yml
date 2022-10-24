@@ -1,0 +1,48 @@
+# dev is used to connect to the server.
+version: "3"
+
+services:
+  mysql:
+    platform: linux/x86_64
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_DATABASE=testing
+      # So you don't have to use root, but you can if you like
+      - MYSQL_USER=nghihua
+      # You can use whatever password you like
+      - MYSQL_PASSWORD=nghihua
+      # Password for root access
+      - MYSQL_ROOT_PASSWORD=ducthang
+
+    volumes:
+      - ~/apps/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  api:
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    image: "api"
+    env_file: api/app.env
+    container_name: api
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+      
+  # reverse-proxy:
+  #   image: nginx:1.17.10
+  #   container_name: go_reverse_proxy
+  #   depends_on:
+  #     - api
+  #     - mysql
+  #   volumes:
+  #     - ./api/reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+  #   ports:
+  #     - "80:80"
+
+volumes:
+  my-db:

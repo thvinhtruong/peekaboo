@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  mysql:
+    platform: linux/x86_64
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_DATABASE=pe
+      # So you don't have to use root, but you can if you like
+      - MYSQL_USER=ducthang
+      # You can use whatever password you like
+      - MYSQL_PASSWORD=ducthang
+      # Password for root access
+      - MYSQL_ROOT_PASSWORD=ducthang
+
+    volumes:
+      - ~/apps/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  api:
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    image: "api"
+    env_file: api/app.env
+    container_name: api
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+
+  ui:
+    build:
+      context: ./ui
+      dockerfile: ./Dockerfile
+    image: "ui"
+    restart: always
+    container_name: ui
+    ports:
+      - "5001:80"
+    depends_on:
+      - api
+
+  # reverse-proxy:
+  #   image: nginx:1.17.10
+  #   container_name: reverse_proxy_demo
+  #   depends_on:
+  #     - api
+  #     - mysql
+  #     - ui
+  #   volumes:
+  #     - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+  #   ports:
+  #     - "80:80"
+
+volumes:
+  my-db:

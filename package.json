@@ -1,0 +1,52 @@
+{
+  "name": "programming-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "husky install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/galvdat/vgu_tinyprojects/pe2022/pe2022_team-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/galvdat/vgu_tinyprojects/pe2022/pe2022_team-3/issues"
+  },
+  "homepage": "https://gitlab.com/galvdat/vgu_tinyprojects/pe2022/pe2022_team-3#readme",
+  "devDependencies": {
+    "@types/react": "^18.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.4",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.8",
+    "prettier": "^2.6.2"
+  },
+  "lint-staged": {
+    "ui/src/**/**/*.{ts,tsx}": [
+      "eslint ui/src/**/**/*.{ts,tsx} --fix",
+      "prettier --write ui/src/**/**/*.{ts,tsx}",
+      "git add ."
+    ]
+  },
+  "dependencies": {
+    "antd": "^4.21.1",
+    "i": "^0.3.7",
+    "interweave": "^13.0.0",
+    "npm": "^8.12.1",
+    "react": "^18.1.0",
+    "styled-components": "^5.3.5"
+  }
+}
